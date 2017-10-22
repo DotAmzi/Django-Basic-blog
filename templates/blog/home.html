@@ -3,21 +3,37 @@
   <head>
     <meta charset="utf-8">
     <title>Django Project</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
   </head>
   <body>
-    <h1>Hello {{name}}</h1>
+    <h1>Blog - {{name}}</h1>
 
-    <ul>
-      {% for category in categories %}
-      <li>
-        {{ category.name }}
-      </li>
-      {% endfor %}
-    </ul>
-    <hr>
-    <h2>{{ post.name }} ( {{post.category.name}} )</h2>
-    <p>
-      {{ post.content }}
-    </p>
+    <div class="container row">
+      <div class="col-md-3">
+        <aside class="row">
+          Categories
+
+          <ul>
+            {% for category in categories %}
+            <li>
+              {{ category.name }}
+            </li>
+            {% endfor %}
+          </ul>
+        </aside>
+      </div>
+
+      <div class="col-md-8">
+        <section>
+          <article class="">
+            <h2>{{ post.name }} ( {{post.category.name}} )</h2>
+            <p>
+              {{ post.content }}
+            </p>
+          </article>
+        </section>
+      </div>
+    </div>
+
   </body>
 </html>
