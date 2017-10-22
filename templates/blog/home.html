@@ -7,11 +7,14 @@
 
 {% block content %}
 <section>
-  <article class="">
-    <h2>{{ post.name }} ( {{post.category.name}} )</h2>
-    <p>
-      {{ post.content }}
-    </p>
-  </article>
+  {% for post in posts %}
+    <article class="">
+      <h2>{{ post.name }} ( {{post.category.name}} )</h2>
+      <p>
+        {{ post.content }}
+      </p>
+    </article>
+    <hr>
+  {% endfor %}
 </section>
 {% endblock %}
