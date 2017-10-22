@@ -31,3 +31,19 @@ def home(request):
     }
 
     return render(request, 'blog/home.html', context)
+
+def show_posts_by_category(request, category_id):
+
+    all_categories = Category.objects.all()
+    category = Category.objects.get(pk=category_id)
+    name = category.name
+    posts = Post.objects.filter(category=category, status="Published")
+
+    context = {
+        'name': name,
+        'posts': posts,
+        'categories': all_categories,
+        'category': category
+    }
+
+    return render(request, 'blog/home.html', context)
