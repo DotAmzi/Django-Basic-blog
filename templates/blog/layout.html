@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}
+      Blog em python
+    {% endblock %}</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+  </head>
+  <body>
+    <h1>Blog - {{name}}</h1>
+
+    <div class="container row">
+      <div class="col-md-3">
+        <aside class="row">
+          <h3>
+            Categories
+          </h3>
+
+          <ul>
+            {% for category in categories %}
+            <li>
+              {{ category.name }}
+            </li>
+            {% endfor %}
+          </ul>
+        </aside>
+      </div>
+
+      <div class="col-md-8">
+        {% block content %} {% endblock %}
+      </div>
+    </div>
+
+  </body>
+</html>
