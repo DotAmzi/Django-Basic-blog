@@ -9,6 +9,11 @@
   </head>
   <body>
     <h1>Blog - {{name}}</h1>
+    {% if request.user.is_authenticated %}
+      <p>
+        Username: {{request.user.username}}
+      </p>
+    {% endif %}
 
     <div class="container row">
       <div class="col-md-3">
