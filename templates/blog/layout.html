@@ -9,9 +9,10 @@
   </head>
   <body>
     <h1>Blog - {{name}}</h1>
+    {% load gravatar %}
     {% if request.user.is_authenticated %}
       <p>
-        Username: {{request.user.username}}
+        Username: {{request.user.username}} <img src="{% gravatar_url request.user.email 30 %}" alt="">
       </p>
     {% endif %}
 
