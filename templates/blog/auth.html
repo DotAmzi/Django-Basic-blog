@@ -1,0 +1,16 @@
+{% extends "blog/layout.html" %}
+
+{% block title %}
+  Blog desse post
+{% endblock %}
+
+
+{% block content %}
+<section>
+  {% if error == True %}
+    <h1>Error!</h1>
+  {% else %}
+    <h1>Welcome {{request.user}}</h1>
+  {% endif %}
+</section>
+{% endblock %}

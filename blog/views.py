@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from blog.models import Category, Post
+from django.contrib.auth import authenticate, login
 
 # Create your views here.
 
@@ -47,3 +48,21 @@ def show_posts_by_category(request, category_id):
     }
 
     return render(request, 'blog/home.html', context)
+
+def auth(request):
+
+    username = "admin"
+    password = "cam&FERN123"
+
+    user = authenticate(username=username, password=password)
+    if user == None:
+        error = True
+    else:
+        error = False
+        login(request, user)
+
+    context = {
+        'error': error
+    }
+
+    return render(request, 'blog/auth.html', context)
