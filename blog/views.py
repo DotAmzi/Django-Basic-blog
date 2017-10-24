@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from blog.models import Category, Post
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
+from blog.forms import PostForm
 
 # Create your views here.
 
@@ -74,3 +75,7 @@ def logout_view(request):
     logout(request)
 
     return redirect('blog.home')
+
+def post_create(request):
+    form = PostForm()
+    return render(request, 'blog/post_create.html', {'form': form})
