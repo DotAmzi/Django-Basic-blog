@@ -7,10 +7,26 @@
 
 {% block content %}
 <section>
-  {% if error == True %}
-    <h1>Error!</h1>
-  {% else %}
+
+  {% if request.user.is_authenticated %}
     <h1>Welcome {{request.user}}</h1>
+  {% else %}
+    <h1>Auth</h1>
+    {% if error == True %}
+    <p class="alert-danger">
+      Username or password invalid!
+    </p>
+    {% endif %}
+
+    <form class="" action="/blog/Auth" method="post">
+      {% csrf_token %}
+      Username <input type="text" name="username" value="">
+      <br>
+      Password <input type="password" name="password" value="">
+      <br>
+      <input type="submit" name="" value="Go">
+    </form>
   {% endif %}
+
 </section>
 {% endblock %}

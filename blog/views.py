@@ -50,16 +50,18 @@ def show_posts_by_category(request, category_id):
     return render(request, 'blog/home.html', context)
 
 def auth(request):
+    error = False
 
-    username = "admin"
-    password = "cam&FERN123"
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
 
-    user = authenticate(username=username, password=password)
-    if user == None:
-        error = True
-    else:
-        error = False
-        login(request, user)
+        user = authenticate(username=username, password=password)
+        if user == None:
+            error = True
+        else:
+            error = False
+            login(request, user)
 
     context = {
         'error': error
