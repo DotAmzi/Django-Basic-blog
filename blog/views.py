@@ -1,7 +1,8 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from blog.models import Category, Post
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -68,3 +69,8 @@ def auth(request):
     }
 
     return render(request, 'blog/auth.html', context)
+
+def logout_view(request):
+    logout(request)
+
+    return redirect('blog.home')
