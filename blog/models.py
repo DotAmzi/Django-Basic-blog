@@ -25,6 +25,7 @@ class Category (models.Model):
 
 class Post(models.Model):
 
+    author = models.ForeignKey(User)
     category = models.ForeignKey(Category)
     name = models.CharField(max_length=255)
     content = models.TextField()

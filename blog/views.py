@@ -1,9 +1,11 @@
 from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponse
 from blog.models import Category, Post
 from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import redirect
 from blog.forms import PostForm
+
 
 # Create your views here.
 
@@ -77,11 +79,13 @@ def logout_view(request):
 
     return redirect('blog.home')
 
+@login_required
 def post_create(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
             post = Post()
+            post.author = request.user
             post.category = form.cleaned_data['category']
             post.name = form.cleaned_data['name']
             post.content = form.cleaned_data['content']
