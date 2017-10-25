@@ -71,11 +71,25 @@ def auth(request):
 
     return render(request, 'blog/auth.html', context)
 
+
 def logout_view(request):
     logout(request)
 
     return redirect('blog.home')
 
 def post_create(request):
-    form = PostForm()
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = Post()
+            post.category = form.cleaned_data['category']
+            post.name = form.cleaned_data['name']
+            post.content = form.cleaned_data['content']
+            post.status = form.cleaned_data['status']
+            post.save()
+            return redirect('blog.home')
+
+    else:
+        form = PostForm()
+
     return render(request, 'blog/post_create.html', {'form': form})
